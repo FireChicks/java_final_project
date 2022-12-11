@@ -25,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     String currentCaptcha;  
+    boolean isLogin = false;
     
     public MainFrame() {
         initComponents();
