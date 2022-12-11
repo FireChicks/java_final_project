@@ -52,11 +52,13 @@ public class UserDAO {
         
         
         public int join(User user) {
-		String SQL = "INSERT INTO USER VALUES (?, HEX(AES_ENCRYPT(?, SHA2('dldi1021', 256))))";
+		String SQL = "INSERT INTO USER VALUES (?, HEX(AES_ENCRYPT(?, SHA2('dldi1021', 256))),?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
+                        pstmt.setString(3, user.getUserGender());
+                        pstmt.setInt(4, user.getUserCalorie());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
