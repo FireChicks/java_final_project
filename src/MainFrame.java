@@ -25,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     String currentCaptcha;  
+    String userID = null;
     boolean isLogin = false;
     
     public MainFrame() {
@@ -75,75 +76,70 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         radioAct5 = new javax.swing.JRadioButton();
         inputID = new javax.swing.JTextField();
-        inputPW = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        lblImg = new javax.swing.JLabel();
-        inputCaptcha = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        btnSignUp = new javax.swing.JButton();
         radioM = new javax.swing.JRadioButton();
         radioF = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         inputHeight = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         inputWeight = new javax.swing.JTextField();
+        inputPW = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
+        InputLoginID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblImg = new javax.swing.JLabel();
+        inputCaptcha = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        resetChaptcha = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        InputLoginPW = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        jLabel7.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel7.setText("나이 : ");
 
+        jLabel8.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel8.setText("활동량");
 
         groupActivity.add(radioAct1);
+        radioAct1.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioAct1.setText("적음(운동안함)");
 
         groupActivity.add(radioAct2);
+        radioAct2.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioAct2.setText("보통(1~3일운동)");
 
         groupActivity.add(radioAct3);
+        radioAct3.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioAct3.setText("조금(3~5일운동)");
 
+        jLabel1.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel1.setText("아이디(ID)     :");
 
         groupActivity.add(radioAct4);
+        radioAct4.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioAct4.setText("많음(5~7일운동)");
 
+        jLabel2.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel2.setText("비밀번호(PW)  :");
 
         groupActivity.add(radioAct5);
+        radioAct5.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioAct5.setText("매우많음(하루 두번)");
 
-        inputPW.addActionListener(new java.awt.event.ActionListener() {
+        btnSignUp.setFont(new java.awt.Font("궁서", 1, 14)); // NOI18N
+        btnSignUp.setText("회원가입");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputPWActionPerformed(evt);
+                btnSignUpActionPerformed(evt);
             }
         });
-
-        jButton1.setText("확인");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        lblImg.setText("jLabel3");
-
-        jLabel3.setText("보안문자");
-
-        jButton2.setText("새로고침");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("본인문자 입력    :");
 
         groupGender.add(radioM);
+        radioM.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioM.setText("남성");
         radioM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,10 +148,13 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         groupGender.add(radioF);
+        radioF.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         radioF.setText("여성");
 
+        jLabel5.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel5.setText("키 : ");
 
+        jLabel6.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel6.setText("몸무게 : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -171,8 +170,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(inputID)
-                            .addComponent(inputPW, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(inputID, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(inputPW)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,33 +197,20 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(59, 59, 59)
                                 .addComponent(radioAct4)
-                                .addGap(18, 18, 18)
+                                .addGap(40, 40, 40)
                                 .addComponent(radioAct5))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(radioAct1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(27, 27, 27)
                                 .addComponent(radioAct2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioAct3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(121, 121, 121)
-                                        .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(65, 65, 65)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel3))
-                            .addComponent(jLabel4))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(radioAct3))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(btnSignUp)))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,41 +237,117 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(inputWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioAct1)
                     .addComponent(radioAct2)
                     .addComponent(radioAct3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioAct4)
                     .addComponent(radioAct5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(btnSignUp)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("회원가입", jPanel1);
+
+        jLabel9.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        jLabel9.setText("아이디(ID)     :");
+
+        jLabel10.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        jLabel10.setText("비밀번호(PW)  :");
+
+        lblImg.setText("jLabel3");
+
+        jLabel11.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        jLabel11.setText("본인문자 입력    :");
+
+        resetChaptcha.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        resetChaptcha.setText("새로고침");
+        resetChaptcha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetChaptchaActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        btnLogin.setText("확인");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
+        jLabel12.setText("보안문자");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(resetChaptcha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel9))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(jLabel10)))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(InputLoginID)
+                                            .addComponent(InputLoginPW, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnLogin)
+                        .addGap(83, 83, 83))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputLoginID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(InputLoginPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(resetChaptcha))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogin))
+                .addGap(102, 102, 102))
         );
 
         jTabbedPane1.addTab("로그인", jPanel2);
@@ -298,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("식단 입력", jPanel3);
@@ -311,7 +373,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("최근 식단", jPanel4);
@@ -321,26 +383,21 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputPWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPWActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputPWActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         UserDAO userDAO = new UserDAO();
         User user = new User();
         user.setUserID(inputID.getText());
@@ -404,24 +461,56 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         
-        if(checkCaptcha() != 1) {
-            JOptionPane.showMessageDialog(null, "캡차를 확인해주세요");
-            return;
-        }
         if(userDAO.join(user) == 1) {
             JOptionPane.showMessageDialog(null, "성공적으로 아이디를 등록했습니다.");
             return;
         }
         JOptionPane.showMessageDialog(null, "무언가 오류가 발생했습니다.");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        reset();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void radioMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioMActionPerformed
+
+    private void resetChaptchaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetChaptchaActionPerformed
+        reset();
+    }//GEN-LAST:event_resetChaptchaActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        UserDAO userDAO = new UserDAO();
+        int login = 0;
+        if(InputLoginID.getText()==null || InputLoginID.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "아이디를 입력해 주세요.");
+            return;
+        }
+        
+        if(InputLoginPW.getText()==null || InputLoginPW.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "비밀번호를 입력해 주세요.");
+            return;
+        }
+        
+        if(checkCaptcha() != 1) {
+            JOptionPane.showMessageDialog(null, "캡차를 확인해주세요");
+            return;
+        }
+        
+        login = userDAO.login(InputLoginID.getText(), InputLoginPW.getText());
+         if (login == -1){
+            JOptionPane.showMessageDialog(null, "없는 ID 입니다.");
+            return;
+        }
+         else if (login == 0){
+            JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
+            return;
+         }
+        else if(login == 1){
+            userID = InputLoginID.getText();
+            JOptionPane.showMessageDialog(null, userID + "님, 안녕하세요!");
+            isLogin = true;
+        }else{
+            JOptionPane.showMessageDialog(null,"데이터베이스 오류");
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
     
     public void HWACheck(){
         double test = 0;
@@ -499,24 +588,28 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField InputLoginID;
+    private javax.swing.JPasswordField InputLoginPW;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnSignUp;
     private javax.swing.ButtonGroup groupActivity;
     private javax.swing.ButtonGroup groupGender;
     private javax.swing.JTextField inputAge;
     private javax.swing.JTextField inputCaptcha;
     private javax.swing.JTextField inputHeight;
     private javax.swing.JTextField inputID;
-    private javax.swing.JTextField inputPW;
+    private javax.swing.JPasswordField inputPW;
     private javax.swing.JTextField inputWeight;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -530,5 +623,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioAct5;
     private javax.swing.JRadioButton radioF;
     private javax.swing.JRadioButton radioM;
+    private javax.swing.JButton resetChaptcha;
     // End of variables declaration//GEN-END:variables
 }
