@@ -59,6 +59,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupGender = new javax.swing.ButtonGroup();
+        groupActivity = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         inputID = new javax.swing.JTextField();
@@ -69,6 +71,20 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        radioM = new javax.swing.JRadioButton();
+        radioF = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        inputHeight = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        inputWeight = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        inputAge = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        radioAct1 = new javax.swing.JRadioButton();
+        radioAct2 = new javax.swing.JRadioButton();
+        radioAct3 = new javax.swing.JRadioButton();
+        radioAct4 = new javax.swing.JRadioButton();
+        radioAct5 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblImg.setText("jLabel3");
 
-        jLabel3.setText("CAPTCHA ");
+        jLabel3.setText("보안문자");
 
         jButton2.setText("새로고침");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +116,41 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("CAPTCHA    :");
+        jLabel4.setText("본인문자 입력    :");
+
+        groupGender.add(radioM);
+        radioM.setText("남성");
+        radioM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMActionPerformed(evt);
+            }
+        });
+
+        groupGender.add(radioF);
+        radioF.setText("여성");
+
+        jLabel5.setText("키 : ");
+
+        jLabel6.setText("몸무게 : ");
+
+        jLabel7.setText("나이 : ");
+
+        jLabel8.setText("활동량");
+
+        groupActivity.add(radioAct1);
+        radioAct1.setText("적음(운동안함)");
+
+        groupActivity.add(radioAct2);
+        radioAct2.setText("보통(1~3일운동)");
+
+        groupActivity.add(radioAct3);
+        radioAct3.setText("조금(3~5일운동)");
+
+        groupActivity.add(radioAct4);
+        radioAct4.setText("많음(5~7일운동)");
+
+        groupActivity.add(radioAct5);
+        radioAct5.setText("매우많음(하루 두번)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,26 +158,66 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblImg)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputID, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(inputPW)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4))
+                                .addGap(121, 121, 121)
+                                .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(radioAct4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioAct5)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(radioM)
+                        .addGap(61, 61, 61)
+                        .addComponent(radioF))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(inputCaptcha, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                    .addComponent(inputID)
-                                    .addComponent(inputPW))))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                                .addComponent(inputHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(radioAct1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(radioAct2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioAct3)))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,19 +230,45 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(inputPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblImg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(17, 17, 17))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioM)
+                    .addComponent(radioF))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(inputHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(inputWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radioAct1)
+                            .addComponent(radioAct2)
+                            .addComponent(radioAct3))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioAct4)
+                    .addComponent(radioAct5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -167,11 +283,41 @@ public class MainFrame extends javax.swing.JFrame {
         User user = new User();
         user.setUserID(inputID.getText());
         user.setUserPassword(inputPW.getText());
+        double activity;
+        int Calorie;
         
-        if(checkCaptcha() != 1) {
-            JOptionPane.showMessageDialog(null, "캡차를 확인해주세요");
-            return;
+        if(radioAct1.isSelected()){
+            activity = 1.2;
+        }else if(radioAct2.isSelected()){
+            activity = 1.375;
+        }else if(radioAct3.isSelected()){
+            activity = 1.55;
+        }else if(radioAct4.isSelected()){
+            activity = 1.725;
+        }else if(radioAct5.isSelected()){
+            activity = 1.9;
+        }else {
+            activity = 0;
         }
+        if(radioM.isSelected()){
+            user.setUserGender("남성");
+            HWACheck();
+            Calorie = (int) ((66.0 +(13.7 * Double.parseDouble(inputWeight.getText())) 
+                    + (5 * Double.parseDouble(inputHeight.getText())) 
+                    - (6.8 *  Double.parseDouble(inputAge.getText())))*activity);
+        }
+        else if(radioF.isSelected()){
+            user.setUserGender("여성");
+            HWACheck();
+            Calorie =  (int)((665.0 +(9.6 * Double.parseDouble(inputWeight.getText())) 
+                    + (1.7 *Double.parseDouble(inputHeight.getText())) 
+                    - (4.7 * Double.parseDouble(inputAge.getText())))*activity);
+        }
+        else{
+            Calorie = 0;
+        }
+        
+        user.setUserCalorie(Calorie);
         
         if(user.getUserID() == null || user.getUserID().equals("")) {
             JOptionPane.showMessageDialog(null, "아이디를 입력해주세요");
@@ -185,7 +331,21 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요");
             return;
         }
+        if(user.getUserGender() == null || user.getUserGender().equals("")){
+            JOptionPane.showMessageDialog(null,"성별을 골라주세요");
+            return;
+        }
+        HWACheck();
         
+        if(user.getUserCalorie() == 0){
+            JOptionPane.showMessageDialog(null,"활동량을 선택해주세요");
+            return;
+        }
+        
+        if(checkCaptcha() != 1) {
+            JOptionPane.showMessageDialog(null, "캡차를 확인해주세요");
+            return;
+        }
         if(userDAO.join(user) == 1) {
             JOptionPane.showMessageDialog(null, "성공적으로 아이디를 등록했습니다.");
             return;
@@ -197,7 +357,50 @@ public class MainFrame extends javax.swing.JFrame {
         reset();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void radioMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMActionPerformed
     
+    public void HWACheck(){
+        double test = 0;
+        if(inputHeight.getText()==null|| inputHeight.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"키를 입력해 주세요");
+            return;
+        }else{
+            try {
+                test = Double.parseDouble(inputHeight.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"키는 숫자만 입력해 주세요");
+                return;
+            }
+        }
+        if(inputWeight.getText()==null|| inputWeight.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"몸무게를 입력해 주세요");
+            return;
+        }else{
+             try {
+                test = Double.parseDouble(inputWeight.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"몸무게는 숫자만 입력해 주세요");
+                return;
+            }
+        }
+        
+        if(inputAge.getText()==null|| inputAge.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"나이를 입력해 주세요");
+            return;
+        }else{
+             try {
+                test = Double.parseDouble(inputAge.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"나이는 숫자만 입력해 주세요");
+                return;
+            }
+        }
+        
+    }
+    
+ 
     /**
      * @param args the command line arguments
      */
@@ -234,15 +437,31 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup groupActivity;
+    private javax.swing.ButtonGroup groupGender;
+    private javax.swing.JTextField inputAge;
     private javax.swing.JTextField inputCaptcha;
+    private javax.swing.JTextField inputHeight;
     private javax.swing.JTextField inputID;
     private javax.swing.JTextField inputPW;
+    private javax.swing.JTextField inputWeight;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblImg;
+    private javax.swing.JRadioButton radioAct1;
+    private javax.swing.JRadioButton radioAct2;
+    private javax.swing.JRadioButton radioAct3;
+    private javax.swing.JRadioButton radioAct4;
+    private javax.swing.JRadioButton radioAct5;
+    private javax.swing.JRadioButton radioF;
+    private javax.swing.JRadioButton radioM;
     // End of variables declaration//GEN-END:variables
 }
