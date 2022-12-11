@@ -11,6 +11,8 @@ package user;
 public class User {
     private String userID;
     private String userPassword;
+    private String userGender;
+    private int userCalorie;
     
     public String getUserID() {
 	return userID;
@@ -23,5 +25,17 @@ public class User {
     }
     public void setUserPassword(String userPassword) {
 	this.userPassword = userPassword;
+    }
+    public void setUserGender(String userGender){
+        this.userGender = userGender;
+    }
+    public String getUserGender(){
+        return userGender;
+    }
+    public void setUserCalorie(int userCalorie){
+        this.userCalorie = userCalorie;
+    }
+    public int getUserCalorie(){
+        return userCalorie;
     }
 }
