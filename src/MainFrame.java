@@ -4,11 +4,16 @@ import user.User;
 import user.UserDAO;
 import captcha.TextToGraphics;
 import captcha.CAPTCHA;
+import diet.Diet;
+import diet.DietDAO;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -97,6 +102,14 @@ public class MainFrame extends javax.swing.JFrame {
         InputLoginPW = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DietTable = new javax.swing.JTable();
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("궁서", 0, 13)); // NOI18N
         jLabel7.setText("나이 : ");
@@ -248,7 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(radioAct5))
                 .addGap(51, 51, 51)
                 .addComponent(btnSignUp)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("회원가입", jPanel1);
@@ -342,7 +355,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,23 +373,39 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGap(0, 623, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("식단 입력", jPanel3);
+
+        DietTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "음식 이름", "개수", "칼로리", "총 칼로리", "날짜"
+            }
+        ));
+        jScrollPane1.setViewportView(DietTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("최근 식단", jPanel4);
+        jTabbedPane1.addTab("Current Diet", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -511,6 +540,34 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"데이터베이스 오류");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        int tabIndex = 0;
+        String strTabTitle = null;
+        
+        tabIndex = jTabbedPane1.getSelectedIndex();
+        strTabTitle = jTabbedPane1.getTitleAt(tabIndex);
+        DefaultTableModel model = (DefaultTableModel) DietTable.getModel();
+        if(strTabTitle.equals("Current Diet")) {
+            DietDAO dietDAO = new DietDAO();           
+            if(isLogin) {
+                ArrayList<Diet> DietList = dietDAO.currentDiet(userID);
+                for(int i = 0; i  < DietList.size(); i++){                    
+                    model.addRow(new Object[]{DietList.get(i).getDietmenu(), 
+                                                   DietList.get(i).getMenuCount(), 
+                                                   DietList.get(i).getMenuCalorie(), 
+                                                   DietList.get(i).getMenuCalorie() *  DietList.get(i).getMenuCount(),
+                                                   DietList.get(i).getDietDate().substring(10) });
+                }
+            }
+        } else {
+            DietDAO dietDAO = new DietDAO();
+            ArrayList<Diet> DietList = dietDAO.currentDiet(userID);            
+                for(int i = 0; i  < DietList.size(); i++){                    
+                    model.removeRow(0);
+                }
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
     
     public void HWACheck(){
         double test = 0;
@@ -588,6 +645,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable DietTable;
     private javax.swing.JTextField InputLoginID;
     private javax.swing.JPasswordField InputLoginPW;
     private javax.swing.JButton btnLogin;
@@ -614,6 +672,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblImg;
     private javax.swing.JRadioButton radioAct1;
