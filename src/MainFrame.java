@@ -143,8 +143,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         radioDiet = new javax.swing.JRadioButton();
         radioBulk = new javax.swing.JRadioButton();
-        messageCalorie = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        userCalorie = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        todatCalorie = new javax.swing.JLabel();
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -288,7 +291,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(radioAct5))
                 .addGap(51, 51, 51)
                 .addComponent(btnSignUp)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("회원가입", jPanel1);
@@ -376,7 +379,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,7 +413,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Current Diet", jPanel4);
@@ -560,7 +563,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(exCa)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -595,13 +598,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         groupCalorie.add(radioDiet);
         radioDiet.setText("다이어트");
+        radioDiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDietActionPerformed(evt);
+            }
+        });
 
         groupCalorie.add(radioBulk);
         radioBulk.setText("벌크업");
 
-        messageCalorie.setText("이곳에 표시됩니다.");
+        jLabel.setText("목표칼로리 : ");
 
-        jLabel19.setText("날짜입력 양식 : YYYY-MM-DD");
+        jLabel19.setText("날짜입력 양식 : YYYY-MM-DD (예시 : 2022-12-12)");
+
+        userCalorie.setText("0");
+
+        jLabel20.setText("달성칼로리 :");
+        jLabel20.setPreferredSize(new java.awt.Dimension(106, 25));
+
+        todatCalorie.setText("0");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -611,39 +626,56 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(radioDiet)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioBulk)
-                        .addGap(38, 38, 38)
-                        .addComponent(messageCalorie))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
                         .addComponent(searchDate, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSearch)))
+                        .addComponent(btnSearch))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioDiet)
+                            .addComponent(jLabel)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(radioBulk))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(todatCalorie))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(userCalorie)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioDiet)
-                    .addComponent(radioBulk)
-                    .addComponent(messageCalorie))
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(searchDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel19)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioDiet)
+                    .addComponent(radioBulk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel)
+                    .addComponent(userCalorie))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(todatCalorie))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("search Diet", jPanel5);
@@ -953,12 +985,69 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if(!isLogin){
+            JOptionPane.showMessageDialog(null,"로그인이 필요한 서비스입니다.");
+            return;
+        }
+        int Check = 0;
+        UserDAO userDAO = new UserDAO();
+        User user = new User();
+        user = userDAO.getUser(userID);
+        int target = 0;
+        if(radioDiet.isSelected()){
+            target = user.getUserCalorie();
+            target = (target - (int)(target*0.1));
+            userCalorie.setText(Integer.toString(target));
+        }else if(radioBulk.isSelected()){
+            target = user.getUserCalorie();
+            target = (target + (int)(target*0.1));
+            userCalorie.setText(Integer.toString(target));
+        }
+        
         DietDAO dietDAO = new DietDAO();
         Diet diet = new Diet();
         DefaultTableModel model = (DefaultTableModel) searchDietTable.getModel();
+        model.setNumRows(0);
         String Date = searchDate.getText();
+        String[] array = Date.split("-");
+        int plus = Integer.parseInt(array[2]);
+        plus++;
+        String change = Integer.toString(plus);
+        String plusDate = array[0]+"-"+array[1]+"-"+change;
         
+        if(dietDAO.searchDietCheck(userID,Date,plusDate)==-1){
+            JOptionPane.showMessageDialog(null,"양식에 맞게 입력해 주세요.");
+            return;
+        }else{
+            ArrayList<Diet> DietList = dietDAO.searchDiet(userID,Date,plusDate);
+            String menu; 
+            double calorie= 0;
+            double protien=0;
+            double fat=0;
+            double cabo=0;
+            for(int i=0; i<DietList.size(); i++){
+                menu = DietList.get(i).getDietmenu();
+                calorie += DietList.get(i).getMenuCalorie();
+                protien += DietList.get(i).getMenuProtien();
+                fat += DietList.get(i).getMenuFat();
+                cabo += DietList.get(i).getMenuCabo();
+                model.addRow(new Object[]{Date
+                        ,menu
+                        ,DietList.get(i).getMenuCalorie()
+                        ,DietList.get(i).getMenuProtien()
+                        ,DietList.get(i).getMenuFat()
+                        ,DietList.get(i).getMenuCabo()});
+            }
+            model.addRow(new Object[]{Date
+                ,"총합",calorie,protien,fat,cabo
+            });
+            todatCalorie.setText(Double.toString(calorie));
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void radioDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDietActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioDietActionPerformed
     
     public void HWACheck(){
         double test = 0;
@@ -1060,6 +1149,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField inputWeight;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1072,6 +1162,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1089,7 +1180,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblImg;
-    private javax.swing.JLabel messageCalorie;
     private javax.swing.JRadioButton radioAct1;
     private javax.swing.JRadioButton radioAct2;
     private javax.swing.JRadioButton radioAct3;
@@ -1105,6 +1195,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable searchFoodTable;
     private javax.swing.JButton searchFoodbtn;
     private javax.swing.JTextField sizeInput;
+    private javax.swing.JLabel todatCalorie;
+    private javax.swing.JLabel userCalorie;
     // End of variables declaration//GEN-END:variables
     
 }
