@@ -4,10 +4,7 @@ import user.User;
 import user.UserDAO;
 import captcha.TextToGraphics;
 import captcha.CAPTCHA;
-import diet.Diet;
-import diet.DietDAO;
-import food.FoodDAO;
-import food.Food;
+import diet.*;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -34,7 +32,17 @@ public class MainFrame extends javax.swing.JFrame {
     String currentCaptcha;  
     String userID = null;
     boolean isLogin = false;
+    boolean isCompleteSearch = false;
     
+    int selectedIndex = -1;
+    ArrayList<Food> foodList = null;
+    
+    int eatSize = 0;
+    double kcal = 0;
+    double protien = 0;
+    double fat = 0;
+    double cabo = 0;
+      
     public MainFrame() {
         initComponents();
         lblImg.setText("");
@@ -112,6 +120,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         searchFoodTable = new javax.swing.JTable();
+        foodName = new javax.swing.JLabel();
+        sizeInput = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        exKcal = new javax.swing.JLabel();
+        exProtien = new javax.swing.JLabel();
+        exFat = new javax.swing.JLabel();
+        exCa = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -269,7 +290,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(radioAct5))
                 .addGap(51, 51, 51)
                 .addComponent(btnSignUp)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("회원가입", jPanel1);
@@ -363,7 +384,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(inputCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,7 +418,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Current Diet", jPanel4);
@@ -420,8 +441,61 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "이름", "카테고리(대)", "카테고리(소)", "1회 섭취량", "칼로리", "단백질", "지방", "탄수화물"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        searchFoodTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFoodTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(searchFoodTable);
+
+        foodName.setText("음식 이름(아래 테이블에서 음식 선택시 변경됩니다.)");
+
+        sizeInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                sizeInputKeyTyped(evt);
+            }
+        });
+
+        jLabel14.setText("섭취량(g)");
+
+        jLabel15.setText("예상 칼로리");
+
+        jLabel16.setText("예상 단백질");
+
+        jLabel17.setText("예상 지방");
+
+        jLabel18.setText("예상 탄수화물");
+
+        exKcal.setText("칼로리");
+
+        exProtien.setText("단백질");
+
+        exFat.setText("지방");
+
+        exCa.setText("탄수화물");
+
+        jButton1.setText("입력");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("식단 등록");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -430,20 +504,71 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(foodNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchFoodbtn))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sizeInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(exKcal, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(exProtien, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(exFat, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(exCa, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(foodName)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(foodNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(searchFoodbtn)))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(foodName)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(exKcal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(exProtien))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(exFat))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(exCa)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -455,7 +580,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jTabbedPane1.addTab("식단 입력", jPanel3);
+        jTabbedPane1.addTab("Input Diet", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -594,7 +719,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         int tabIndex = 0;
         String strTabTitle = null;
-        
+       /* 
         tabIndex = jTabbedPane1.getSelectedIndex();
         strTabTitle = jTabbedPane1.getTitleAt(tabIndex);
         DefaultTableModel model = (DefaultTableModel) DietTable.getModel();
@@ -609,22 +734,19 @@ public class MainFrame extends javax.swing.JFrame {
                                                    DietList.get(i).getMenuCalorie() *  DietList.get(i).getMenuCount(),
                                                    DietList.get(i).getDietDate().substring(10) });
                 }
+            } else {
+                model.setNumRows(0);
             }
-        } else {
-            DietDAO dietDAO = new DietDAO();
-            ArrayList<Diet> DietList = dietDAO.currentDiet(userID);            
-                for(int i = 0; i  < DietList.size(); i++){                    
-                    model.removeRow(0);
-                }
+        
         }
+        */
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void searchFoodbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFoodbtnActionPerformed
         FoodDAO foodDAO = new FoodDAO();
         DefaultTableModel model = (DefaultTableModel) searchFoodTable.getModel();
         model.setNumRows(0);
-        String search = foodNameInput.getText();
-        ArrayList<Food> foodList = foodDAO.searchFoodList(search);
+        foodList = foodDAO.searchFoodList(foodNameInput.getText());
                 for(int i = 0; i  < foodList.size(); i++){                    
                     model.addRow(new Object[]{foodList.get(i).getFoodName(), 
                                                    foodList.get(i).getFoodBigCategory(), 
@@ -635,8 +757,79 @@ public class MainFrame extends javax.swing.JFrame {
                                                    foodList.get(i).getFat(),
                                                    foodList.get(i).getCarbohydrate(),});
                 }
-        
+        isCompleteSearch = false;
+        selectedIndex = -1;
     }//GEN-LAST:event_searchFoodbtnActionPerformed
+
+    private void searchFoodTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFoodTableMouseClicked
+        selectedIndex = searchFoodTable.getSelectedRow();
+        foodName.setText(foodList.get(selectedIndex).getFoodName());
+    }//GEN-LAST:event_searchFoodTableMouseClicked
+
+    private void sizeInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sizeInputKeyTyped
+       char c = evt.getKeyChar();
+ 
+        if (!Character.isDigit(c)) {
+            evt.consume();
+            return;
+        }     
+    }//GEN-LAST:event_sizeInputKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if(selectedIndex == -1) {
+            JOptionPane.showMessageDialog(null, "먼저 음식을 검색해서 선택해주세요");
+            return;
+        }
+        if(sizeInput != null && !sizeInput.equals("") && !sizeInput.equals("0")) {
+            int size = Integer.parseInt(sizeInput.getText());
+                eatSize = size;
+                double calcSize = size / ((double) foodList.get(selectedIndex).getServingSize());
+                kcal =  foodList.get(selectedIndex).getKacal() *  calcSize;
+                protien =  foodList.get(selectedIndex).getProtein() * calcSize;
+                fat =  foodList.get(selectedIndex).getFat() * calcSize;
+                cabo =  foodList.get(selectedIndex).getCarbohydrate() * calcSize;
+            
+                kcal = Math.round(kcal);
+                protien = Math.round(protien);
+                fat = Math.round(fat);
+                cabo = Math.round(cabo);
+                
+                
+                exKcal.setText(kcal + "");
+                exProtien.setText(protien + "");
+                exFat.setText(fat + "");
+                exCa.setText(cabo + "");
+                isCompleteSearch = true;
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(!isLogin) {
+            JOptionPane.showMessageDialog(null, "먼저 로그인해 주세요.");
+            return;
+        }
+       if(selectedIndex == -1) {
+            JOptionPane.showMessageDialog(null, "먼저 음식을 검색해서 선택해주세요");
+            return;
+        } 
+       if(!isCompleteSearch) {
+           JOptionPane.showMessageDialog(null, "수치를 입력해서 식단을 확정해주세요");
+            return;
+       }
+       DietDAO dietDAO = new DietDAO();
+       Diet diet = new Diet();
+       diet.setDietmenu(foodList.get(selectedIndex).getFoodName());
+       diet.setMenuCalorie(kcal);
+       diet.setMenuProtien(protien);
+       diet.setMenuFat(fat);
+       diet.setMenuCabo(cabo);
+       diet.setUserID(userID);
+       if(dietDAO.insertDiet(diet) == 1) {
+           JOptionPane.showMessageDialog(null, "성공적으로" + userID + "님의 식단을 등록했습니다.");
+       } else {
+           JOptionPane.showMessageDialog(null, "데이터베이스 오류가 발생했습니다.");
+       }
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     public void HWACheck(){
         double test = 0;
@@ -719,6 +912,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField InputLoginPW;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
+    private javax.swing.JLabel exCa;
+    private javax.swing.JLabel exFat;
+    private javax.swing.JLabel exKcal;
+    private javax.swing.JLabel exProtien;
+    private javax.swing.JLabel foodName;
     private javax.swing.JTextField foodNameInput;
     private javax.swing.ButtonGroup groupActivity;
     private javax.swing.ButtonGroup groupGender;
@@ -728,10 +926,17 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField inputID;
     private javax.swing.JPasswordField inputPW;
     private javax.swing.JTextField inputWeight;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -758,5 +963,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton resetChaptcha;
     private javax.swing.JTable searchFoodTable;
     private javax.swing.JButton searchFoodbtn;
+    private javax.swing.JTextField sizeInput;
     // End of variables declaration//GEN-END:variables
 }

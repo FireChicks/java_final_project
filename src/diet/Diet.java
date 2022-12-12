@@ -8,13 +8,15 @@ package diet;
  *
  * @author LeeJanyun
  */
-public class Diet implements Comparable<Diet> {
+public class Diet {
     private int dietID; 
     private String userID;
     private String dietmenu; 
-    private int menuCount;
     private String dietDate; 
-    private int menuCalorie;
+    private double menuCalorie;
+    private double menuProtien;
+    private double menuFat;
+    private double menuCabo;
 
     public int getDietID() {
         return dietID;
@@ -40,14 +42,6 @@ public class Diet implements Comparable<Diet> {
         this.dietmenu = dietmenu;
     }
 
-    public int getMenuCount() {
-        return menuCount;
-    }
-
-    public void setMenuCount(int menuCount) {
-        this.menuCount = menuCount;
-    }
-
     public String getDietDate() {
         return dietDate;
     }
@@ -56,21 +50,38 @@ public class Diet implements Comparable<Diet> {
         this.dietDate = dietDate;
     }
 
-    public int getMenuCalorie() {
+    public double getMenuCalorie() {
         return menuCalorie;
     }
 
-    public void setMenuCalorie(int menuCalorie) {
+    public void setMenuCalorie(double menuCalorie) {
         this.menuCalorie = menuCalorie;
     }
-    
-    @Override
-    public int compareTo(Diet diet) {
-        if (diet.dietDate.compareTo(dietDate) < 0) {
-            return 1;
-        } else if (diet.dietDate.compareTo(dietDate) > 0) {
-            return -1;
-        }
-        return 0;
+
+    public double getMenuProtien() {
+        return menuProtien;
     }
+
+    public void setMenuProtien(double menuProtien) {
+        this.menuProtien = menuProtien;
+    }
+
+    public double getMenuFat() {
+        return menuFat;
+    }
+
+    public void setMenuFat(double menuFat) {
+        this.menuFat = menuFat;
+    }
+
+    public double getMenuCabo() {
+        return menuCabo;
+    }
+
+    public void setMenuCabo(double menuCabo) {
+        this.menuCabo = menuCabo;
+    }
+    
+    
+    
 }

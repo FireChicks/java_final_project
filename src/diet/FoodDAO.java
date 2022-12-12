@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package food;
+package diet;
 
-import diet.Diet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,17 +32,18 @@ public class FoodDAO {
 	}
      
          public ArrayList<Food> searchFoodList(String search) {
-		String SQL = "SELECT * FROM food WHERE foodName = like ?";
-                ArrayList<Food> foodList = new ArrayList<Diet>();
+                search = "%" + search + "%";
+		String SQL = "SELECT * FROM food WHERE foodName like ?";
+                ArrayList<Food> foodList = new ArrayList<Food>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, "%" + search + "%");
+			pstmt.setString(1, search);
 			rs = pstmt.executeQuery();
                         while (rs.next()) {
                             Food food = new Food();
                             food.setFoodName(rs.getString(1));
                             food.setFoodBigCategory(rs.getString(2));
-                            food.setFoodSmallCategory(rs.getString(3);
+                            food.setFoodSmallCategory(rs.getString(3));
                             food.setServingSize(rs.getInt(4));
                             food.setSizeUnit(rs.getString(5));
                             food.setKacal(rs.getDouble(6));
@@ -56,6 +56,6 @@ public class FoodDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return dietList;
+		return foodList;
 	}
 }

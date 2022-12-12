@@ -170,7 +170,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="btnSignUp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="214" max="32767" attributes="0"/>
+                      <EmptySpace pref="258" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -414,7 +414,7 @@
                               <Component id="lblImg" min="-2" pref="111" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="97" max="32767" attributes="0"/>
+                      <EmptySpace pref="141" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="inputCaptcha" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -517,7 +517,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="150" max="32767" attributes="0"/>
+                      <EmptySpace pref="194" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -582,8 +582,8 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#xc2dd;&#xb2e8; &#xc785;&#xb825;">
-                <Property name="tabTitle" type="java.lang.String" value="&#xc2dd;&#xb2e8; &#xc785;&#xb825;"/>
+              <JTabbedPaneConstraints tabName="Input Diet">
+                <Property name="tabTitle" type="java.lang.String" value="Input Diet"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -594,24 +594,90 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="foodNameInput" min="-2" pref="161" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="searchFoodbtn" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="sizeInput" alignment="1" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Component id="exKcal" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="exProtien" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="exFat" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="exCa" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane2" alignment="0" min="-2" pref="562" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="562" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="foodName" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="foodNameInput" min="-2" pref="161" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="searchFoodbtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="211" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="foodName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="sizeInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="exKcal" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="exProtien" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="exFat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="exCa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -658,14 +724,14 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="8" rowCount="0">
-                        <Column editable="true" title="&#xc774;&#xb984;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xce74;&#xd14c;&#xace0;&#xb9ac;(&#xb300;)" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xce74;&#xd14c;&#xace0;&#xb9ac;(&#xc18c;)" type="java.lang.Object"/>
-                        <Column editable="true" title="1&#xd68c; &#xc12d;&#xcde8;&#xb7c9;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xce7c;&#xb85c;&#xb9ac;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xb2e8;&#xbc31;&#xc9c8;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xc9c0;&#xbc29;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xd0c4;&#xc218;&#xd654;&#xbb3c;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xc774;&#xb984;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xce74;&#xd14c;&#xace0;&#xb9ac;(&#xb300;)" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xce74;&#xd14c;&#xace0;&#xb9ac;(&#xc18c;)" type="java.lang.Object"/>
+                        <Column editable="false" title="1&#xd68c; &#xc12d;&#xcde8;&#xb7c9;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xce7c;&#xb85c;&#xb9ac;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xb2e8;&#xbc31;&#xc9c8;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xc9c0;&#xbc29;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xd0c4;&#xc218;&#xd654;&#xbb3c;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -716,9 +782,83 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchFoodTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="foodName">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xc774;&#xb984;(&#xc544;&#xb798; &#xd14c;&#xc774;&#xbe14;&#xc5d0;&#xc11c; &#xc74c;&#xc2dd; &#xc120;&#xd0dd;&#xc2dc; &#xbcc0;&#xacbd;&#xb429;&#xb2c8;&#xb2e4;.)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="sizeInput">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sizeInputKeyTyped"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc12d;&#xcde8;&#xb7c9;(g)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc608;&#xc0c1; &#xce7c;&#xb85c;&#xb9ac;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc608;&#xc0c1; &#xb2e8;&#xbc31;&#xc9c8;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc608;&#xc0c1; &#xc9c0;&#xbc29;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc608;&#xc0c1; &#xd0c4;&#xc218;&#xd654;&#xbb3c;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="exKcal">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xce7c;&#xb85c;&#xb9ac;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="exProtien">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xb2e8;&#xbc31;&#xc9c8;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="exFat">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc9c0;&#xbc29;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="exCa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xd0c4;&#xc218;&#xd654;&#xbb3c;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc785;&#xb825;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc2dd;&#xb2e8; &#xb4f1;&#xb85d;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

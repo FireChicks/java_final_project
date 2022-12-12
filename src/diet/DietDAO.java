@@ -47,15 +47,17 @@ public class DietDAO {
 	}
         
         public int insertDiet(Diet diet) {
-            String SQL = "Insert Into diet values(?,?,?,now(),?)";
+            String SQL = "Insert Into diet values(?,?,?,now(),?,?,?,?)";
                 ArrayList<Diet> dietList = new ArrayList<Diet>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
                         pstmt.setString(2, diet.getUserID());
                         pstmt.setString(3, diet.getDietmenu());
-                        pstmt.setInt(4, diet.getMenuCount());
-                        pstmt.setInt(5, diet.getMenuCalorie());                        
+                        pstmt.setDouble(4, diet.getMenuCalorie());
+                        pstmt.setDouble(5, diet.getMenuProtien());
+                        pstmt.setDouble(6, diet.getMenuFat());
+                        pstmt.setDouble(7, diet.getMenuCabo());
 			return pstmt.executeUpdate();                     
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -75,7 +77,6 @@ public class DietDAO {
                             diet.setDietID(rs.getInt(1));
                             diet.setUserID(rs.getString(2));
                             diet.setDietmenu(rs.getString(3));
-                            diet.setMenuCount(rs.getInt(4));
                             diet.setDietDate(rs.getString(5));
                             diet.setMenuCalorie(rs.getInt(6));
                            dietList.add(diet);
