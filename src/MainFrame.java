@@ -727,7 +727,16 @@ public class MainFrame extends javax.swing.JFrame {
             int startIndex = 0;
             if(isLogin) {
                 ArrayList<Diet> DietList = dietDAO.currentDiet(userID);
-                String CurrentDate = null; 
+                String CurrentDate = null;               
+                 if(DietList.size() == 1) {
+                    model.addRow(new Object[]{DietList.get(0).getDietDate().substring(0,10), 
+                                                   DietList.get(0).getDietmenu(), 
+                                                   DietList.get(0).getMenuCalorie(), 
+                                                   DietList.get(0).getMenuProtien(),
+                                                   DietList.get(0).getMenuFat(),
+                                                   DietList.get(0).getMenuCabo()});
+                    return;
+                }
                 for(int i = 0; i  < DietList.size(); i++){ 
                     if(CurrentDate != null && !CurrentDate.equals(DietList.get(i).getDietDate().substring(0,10))) {
                         double tempCalorie = 0;
