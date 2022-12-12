@@ -6,6 +6,8 @@ import captcha.TextToGraphics;
 import captcha.CAPTCHA;
 import diet.Diet;
 import diet.DietDAO;
+import food.FoodDAO;
+import food.Food;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -100,10 +102,16 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         InputLoginPW = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DietTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        searchFoodbtn = new javax.swing.JButton();
+        foodNameInput = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        searchFoodTable = new javax.swing.JTable();
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -365,19 +373,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("로그인", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("식단 입력", jPanel3);
-
         DietTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -406,6 +401,61 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Current Diet", jPanel4);
+
+        searchFoodbtn.setText("검색");
+        searchFoodbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFoodbtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("이름");
+
+        jLabel4.setText("음식 영양소 검색");
+
+        searchFoodTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "이름", "카테고리(대)", "카테고리(소)", "1회 섭취량", "칼로리", "단백질", "지방", "탄수화물"
+            }
+        ));
+        jScrollPane2.setViewportView(searchFoodTable);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(foodNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchFoodbtn))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(211, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchFoodbtn)
+                    .addComponent(foodNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        jTabbedPane1.addTab("식단 입력", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -568,6 +618,25 @@ public class MainFrame extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void searchFoodbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFoodbtnActionPerformed
+        FoodDAO foodDAO = new FoodDAO();
+        DefaultTableModel model = (DefaultTableModel) searchFoodTable.getModel();
+        model.setNumRows(0);
+        String search = foodNameInput.getText();
+        ArrayList<Food> foodList = foodDAO.searchFoodList(search);
+                for(int i = 0; i  < foodList.size(); i++){                    
+                    model.addRow(new Object[]{foodList.get(i).getFoodName(), 
+                                                   foodList.get(i).getFoodBigCategory(), 
+                                                   foodList.get(i).getFoodSmallCategory(), 
+                                                   foodList.get(i).getServingSize() + foodList.get(i).getSizeUnit(),
+                                                   foodList.get(i).getKacal(),
+                                                   foodList.get(i).getProtein(),
+                                                   foodList.get(i).getFat(),
+                                                   foodList.get(i).getCarbohydrate(),});
+                }
+        
+    }//GEN-LAST:event_searchFoodbtnActionPerformed
     
     public void HWACheck(){
         double test = 0;
@@ -650,6 +719,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField InputLoginPW;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
+    private javax.swing.JTextField foodNameInput;
     private javax.swing.ButtonGroup groupActivity;
     private javax.swing.ButtonGroup groupGender;
     private javax.swing.JTextField inputAge;
@@ -663,6 +733,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -673,6 +745,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblImg;
     private javax.swing.JRadioButton radioAct1;
@@ -683,5 +756,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioF;
     private javax.swing.JRadioButton radioM;
     private javax.swing.JButton resetChaptcha;
+    private javax.swing.JTable searchFoodTable;
+    private javax.swing.JButton searchFoodbtn;
     // End of variables declaration//GEN-END:variables
 }

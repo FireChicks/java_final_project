@@ -8,7 +8,7 @@ package diet;
  *
  * @author LeeJanyun
  */
-public class Diet {
+public class Diet implements Comparable<Diet> {
     private int dietID; 
     private String userID;
     private String dietmenu; 
@@ -64,5 +64,13 @@ public class Diet {
         this.menuCalorie = menuCalorie;
     }
     
-    
+    @Override
+    public int compareTo(Diet diet) {
+        if (diet.dietDate.compareTo(dietDate) < 0) {
+            return 1;
+        } else if (diet.dietDate.compareTo(dietDate) > 0) {
+            return -1;
+        }
+        return 0;
+    }
 }

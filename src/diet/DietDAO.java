@@ -31,6 +31,38 @@ public class DietDAO {
 		}
 	}
         
+        public int getNext() {
+		String SQL = "SELECT dietID  FROM diet ORDER BY dietID DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+        
+        public int insertDiet(Diet diet) {
+            String SQL = "Insert Into diet values(?,?,?,now(),?)";
+                ArrayList<Diet> dietList = new ArrayList<Diet>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+                        pstmt.setString(2, diet.getUserID());
+                        pstmt.setString(3, diet.getDietmenu());
+                        pstmt.setInt(4, diet.getMenuCount());
+                        pstmt.setInt(5, diet.getMenuCalorie());                        
+			return pstmt.executeUpdate();                     
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+        }
+        
          public ArrayList<Diet> currentDiet(String userID) {
 		String SQL = "SELECT * FROM diet WHERE userID = ? AND dietDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()";
                 ArrayList<Diet> dietList = new ArrayList<Diet>();
