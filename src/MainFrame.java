@@ -728,7 +728,7 @@ public class MainFrame extends javax.swing.JFrame {
             if(isLogin) {
                 ArrayList<Diet> DietList = dietDAO.currentDiet(userID);
                 String CurrentDate = null;               
-                 if(DietList.size() == 1) {
+                 if(DietList.size() == 1) {              
                     model.addRow(new Object[]{DietList.get(0).getDietDate().substring(0,10), 
                                                    DietList.get(0).getDietmenu(), 
                                                    DietList.get(0).getMenuCalorie(), 
@@ -792,11 +792,8 @@ public class MainFrame extends javax.swing.JFrame {
                                                    DietList.get(i).getMenuCabo()});
                     CurrentDate = DietList.get(i).getDietDate().substring(0,10);
                 }
-            } else {
-                model.setNumRows(0);
-            }
-        
-        }
+            }        
+        } model.setNumRows(0);
        
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
