@@ -399,7 +399,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "음식 이름", "개수", "칼로리", "총 칼로리", "날짜"
+                "날짜", "음식 이름", "칼로리", "단백질", "지방", "탄수화물"
             }
         ));
         jScrollPane1.setViewportView(DietTable);
@@ -718,28 +718,77 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         int tabIndex = 0;
-        String strTabTitle = null;
-       /* 
+        String strTabTitle = null;      
         tabIndex = jTabbedPane1.getSelectedIndex();
         strTabTitle = jTabbedPane1.getTitleAt(tabIndex);
         DefaultTableModel model = (DefaultTableModel) DietTable.getModel();
         if(strTabTitle.equals("Current Diet")) {
-            DietDAO dietDAO = new DietDAO();           
+            DietDAO dietDAO = new DietDAO();
+            int startIndex = 0;
             if(isLogin) {
                 ArrayList<Diet> DietList = dietDAO.currentDiet(userID);
-                for(int i = 0; i  < DietList.size(); i++){                    
-                    model.addRow(new Object[]{DietList.get(i).getDietmenu(), 
-                                                   DietList.get(i).getMenuCount(), 
+                String CurrentDate = null; 
+                for(int i = 0; i  < DietList.size(); i++){ 
+                    if(CurrentDate != null && !CurrentDate.equals(DietList.get(i).getDietDate().substring(0,10))) {
+                        double tempCalorie = 0;
+                        double tempProtien = 0;
+                        double tempFat = 0;
+                        double tempCabo = 0;
+                        for(int j = startIndex; j < i; j++) {                           
+                            tempCalorie += DietList.get(j).getMenuCalorie();
+                            tempProtien += DietList.get(j).getMenuProtien();
+                            tempFat += DietList.get(j).getMenuFat();
+                            tempCabo += DietList.get(j).getMenuCabo();
+                            startIndex++;
+                        }
+                         model.addRow(new Object[]{CurrentDate, 
+                                                   "", 
+                                                   tempCalorie, 
+                                                   tempProtien,
+                                                   tempFat,
+                                                   tempCabo});
+                         model.addRow(new Object[]{"", 
+                                                   "", 
+                                                   "", 
+                                                   "",
+                                                   "",
+                                                   ""});
+                    }
+                    
+                    if(i + 1 == DietList.size()) {
+                         double tempCalorie = 0;
+                        double tempProtien = 0;
+                        double tempFat = 0;
+                        double tempCabo = 0;
+                        for(int j = startIndex; j < i; j++) {                           
+                            tempCalorie += DietList.get(j).getMenuCalorie();
+                            tempProtien += DietList.get(j).getMenuProtien();
+                            tempFat += DietList.get(j).getMenuFat();
+                            tempCabo += DietList.get(j).getMenuCabo();
+                            startIndex++;
+                        }
+                         model.addRow(new Object[]{CurrentDate, 
+                                                   "", 
+                                                   tempCalorie, 
+                                                   tempProtien,
+                                                   tempFat,
+                                                   tempCabo});
+                         return;
+                    }
+                    model.addRow(new Object[]{DietList.get(i).getDietDate().substring(0,10), 
+                                                   DietList.get(i).getDietmenu(), 
                                                    DietList.get(i).getMenuCalorie(), 
-                                                   DietList.get(i).getMenuCalorie() *  DietList.get(i).getMenuCount(),
-                                                   DietList.get(i).getDietDate().substring(10) });
+                                                   DietList.get(i).getMenuProtien(),
+                                                   DietList.get(i).getMenuFat(),
+                                                   DietList.get(i).getMenuCabo()});
+                    CurrentDate = DietList.get(i).getDietDate().substring(0,10);
                 }
             } else {
                 model.setNumRows(0);
             }
         
         }
-        */
+       
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void searchFoodbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFoodbtnActionPerformed
