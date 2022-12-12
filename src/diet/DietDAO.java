@@ -89,5 +89,47 @@ public class DietDAO {
 		}
 		return dietList;
 	}
+         
+         public ArrayList<Diet> searchDiet(String userID, String Date,String plusDate) {
+		String SQL = "SELECT * FROM diet WHERE userID = ? AND (dietDate > str_to_date(?, '%Y-%m-%d') AND dietDate < str_to_date(?, '%Y-%m-%d')) order by dietDate desc";
+                ArrayList<Diet> dietList = new ArrayList<Diet>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+                        pstmt.setString(2, Date);
+                        pstmt.setString(3, plusDate);
+			rs = pstmt.executeQuery();
+                        while (rs.next()) {
+                            Diet diet = new Diet();
+                            diet.setDietID(rs.getInt(1));
+                            diet.setUserID(rs.getString(2));
+                            diet.setDietmenu(rs.getString(3));
+                            diet.setDietDate(rs.getString(4));
+                            diet.setMenuCalorie(rs.getInt(5));
+                            diet.setMenuProtien(rs.getInt(6));
+                            diet.setMenuFat(rs.getInt(7));
+                            diet.setMenuCabo(rs.getInt(8));
+                            dietList.add(diet);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return dietList;
+	}
+         
+        public int searchDietCheck(String userID, String Date, String plusDate) {
+		String SQL = "SELECT * FROM diet WHERE userID = ? AND  (dietDate > str_to_date(?, '%Y-%m-%d') AND dietDate < str_to_date(?, '%Y-%m-%d')) order by dietDate desc ";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+                        pstmt.setString(2,Date);
+                        pstmt.setString(3, plusDate);
+			rs = pstmt.executeQuery();
+                        rs.next();
+                        return 1;
+		}catch(Exception e) {
+			return -1;
+		}
+	}
 }
 

@@ -80,4 +80,24 @@ public class UserDAO {
 		}
 		return -1;
 	}
+          public User getUser(String userID){
+              String SQL = "select * from user where userID = ?";
+              User user = new User();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+                        if (rs.next()) {
+                        user.setUserID(rs.getString(1));
+                        user.setUserGender(rs.getString(2));
+                        rs.getString(3);
+                        user.setUserCalorie(rs.getInt(4));
+                        
+			return user; 
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+          }
 }
