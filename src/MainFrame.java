@@ -294,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(296, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("회원가입", jPanel1);
+        jTabbedPane1.addTab("join", jPanel1);
 
         jLabel9.setText("아이디(ID)     :");
 
@@ -387,7 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(111, 111, 111))
         );
 
-        jTabbedPane1.addTab("로그인", jPanel2);
+        jTabbedPane1.addTab("login", jPanel2);
 
         DietTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -820,6 +820,9 @@ public class MainFrame extends javax.swing.JFrame {
         tabIndex = jTabbedPane1.getSelectedIndex();
         strTabTitle = jTabbedPane1.getTitleAt(tabIndex);
         DefaultTableModel model = (DefaultTableModel) DietTable.getModel();
+        if(strTabTitle.equals("login")) {
+            reset();
+        }
         if(strTabTitle.equals("Current Diet")) {
             DietDAO dietDAO = new DietDAO();
             int startIndex = 0;
@@ -867,13 +870,19 @@ public class MainFrame extends javax.swing.JFrame {
                         double tempProtien = 0;
                         double tempFat = 0;
                         double tempCabo = 0;
-                        for(int j = startIndex; j < i; j++) {                           
+                        for(int j = startIndex; j <= i; j++) {                           
                             tempCalorie += DietList.get(j).getMenuCalorie();
                             tempProtien += DietList.get(j).getMenuProtien();
                             tempFat += DietList.get(j).getMenuFat();
                             tempCabo += DietList.get(j).getMenuCabo();
                             startIndex++;
                         }
+                        model.addRow(new Object[]{DietList.get(i).getDietDate().substring(0,10), 
+                                                   DietList.get(i).getDietmenu(), 
+                                                   DietList.get(i).getMenuCalorie(), 
+                                                   DietList.get(i).getMenuProtien(),
+                                                   DietList.get(i).getMenuFat(),
+                                                   DietList.get(i).getMenuCabo()});
                          model.addRow(new Object[]{CurrentDate, 
                                                    "", 
                                                    tempCalorie, 

@@ -55,8 +55,8 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#xd68c;&#xc6d0;&#xac00;&#xc785;">
-                <Property name="tabTitle" type="java.lang.String" value="&#xd68c;&#xc6d0;&#xac00;&#xc785;"/>
+              <JTabbedPaneConstraints tabName="join">
+                <Property name="tabTitle" type="java.lang.String" value="join"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -290,8 +290,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#xb85c;&#xadf8;&#xc778;">
-                <Property name="tabTitle" type="java.lang.String" value="&#xb85c;&#xadf8;&#xc778;"/>
+              <JTabbedPaneConstraints tabName="login">
+                <Property name="tabTitle" type="java.lang.String" value="login"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
