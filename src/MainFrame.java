@@ -997,11 +997,18 @@ public class MainFrame extends javax.swing.JFrame {
         if(radioDiet.isSelected()){
             target = user.getUserCalorie();
             target = (target - (int)(target*0.1));
-            userCalorie.setText(Integer.toString(target));
+            userCalorie.setText(Integer.toString(target)+"kcal " + 
+                    "/ 탄수화물 :" + (int)(target*0.5)/4+ "g"+
+                    "/ 단백질 :" + (int)(target*0.3)/4 + "g"+
+                    "/ 지방 :" + (int)(target*0.2)/9 + "g");
+            
         }else if(radioBulk.isSelected()){
             target = user.getUserCalorie();
             target = (target + (int)(target*0.1));
-            userCalorie.setText(Integer.toString(target));
+            userCalorie.setText(Integer.toString(target)+"kcal " + 
+                    " / 탄수화물 :" + (int)(target*0.5)/4+ "g"+
+                    " / 단백질 :" + (int)(target*0.3)/4 + "g"+
+                    " / 지방 :" + (int)(target*0.2)/9 + "g");
         }
         
         DietDAO dietDAO = new DietDAO();
