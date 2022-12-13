@@ -606,6 +606,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         groupCalorie.add(radioBulk);
         radioBulk.setText("벌크업");
+        radioBulk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBulkActionPerformed(evt);
+            }
+        });
 
         jLabel.setText("목표칼로리 : ");
 
@@ -999,27 +1004,6 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         int Check = 0;
-        UserDAO userDAO = new UserDAO();
-        User user = new User();
-        user = userDAO.getUser(userID);
-        int target = 0;
-        if(radioDiet.isSelected()){
-            target = user.getUserCalorie();
-            target = (target - (int)(target*0.1));
-            userCalorie.setText(Integer.toString(target)+"kcal " + 
-                    "/ 탄수화물 :" + (int)(target*0.5)/4+ "g"+
-                    "/ 단백질 :" + (int)(target*0.3)/4 + "g"+
-                    "/ 지방 :" + (int)(target*0.2)/9 + "g");
-            
-        }else if(radioBulk.isSelected()){
-            target = user.getUserCalorie();
-            target = (target + (int)(target*0.1));
-            userCalorie.setText(Integer.toString(target)+"kcal " + 
-                    " / 탄수화물 :" + (int)(target*0.5)/4+ "g"+
-                    " / 단백질 :" + (int)(target*0.3)/4 + "g"+
-                    " / 지방 :" + (int)(target*0.2)/9 + "g");
-        }
-        
         DietDAO dietDAO = new DietDAO();
         Diet diet = new Diet();
         DefaultTableModel model = (DefaultTableModel) searchDietTable.getModel();
@@ -1062,8 +1046,30 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void radioDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDietActionPerformed
-        // TODO add your handling code here:
+        UserDAO userDAO = new UserDAO();
+        User user = new User();
+        user = userDAO.getUser(userID);
+        int target = 0;
+        target = user.getUserCalorie();
+        target = (target - (int)(target*0.1));
+        userCalorie.setText(Integer.toString(target)+"kcal " + 
+                    "/ 탄수화물 :" + (int)(target*0.5)/4+ "g"+
+                    "/ 단백질 :" + (int)(target*0.3)/4 + "g"+
+                    "/ 지방 :" + (int)(target*0.2)/9 + "g");
     }//GEN-LAST:event_radioDietActionPerformed
+
+    private void radioBulkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBulkActionPerformed
+        UserDAO userDAO = new UserDAO();
+        User user = new User();
+        user = userDAO.getUser(userID);
+        int target = 0;
+        target = user.getUserCalorie();
+        target = (target + (int)(target*0.1));
+        userCalorie.setText(Integer.toString(target)+"kcal " + 
+                    "/ 탄수화물 :" + (int)(target*0.5)/4+ "g"+
+                    "/ 단백질 :" + (int)(target*0.3)/4 + "g"+
+                    "/ 지방 :" + (int)(target*0.2)/9 + "g");
+    }//GEN-LAST:event_radioBulkActionPerformed
     
     public void HWACheck(){
         double test = 0;
